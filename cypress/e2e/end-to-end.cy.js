@@ -1,3 +1,7 @@
+ /// <reference types="cypress"/>
+    import { faker } from '@faker-js/faker';
+
+
 describe('Testes End To End do fluxo de cadastro e login', () => {
 
     /* 
@@ -16,13 +20,13 @@ describe('Testes End To End do fluxo de cadastro e login', () => {
 
     Use as boas práticas aprendidas até agora para estruturar o teste.
     */
-
-    beforeEach(() => {
-        // Configurações iniciais, se necessário
-    });
+   
+    
 
 
-    it('Deve fazer o cadastro e validar o login com o usuário cadastrado', () => {
-        // Criar todo o fluxo aqui dentro deste único "it"
+    it('Deve cadastrar um novo usuário e logo em seguida logar no mesmo', () => {
+        cy.visit('register.html')
+        cy.CadastroeLogin()
+        
     });
 });
