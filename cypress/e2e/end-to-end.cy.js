@@ -25,8 +25,22 @@ describe('Testes End To End do fluxo de cadastro e login', () => {
 
 
     it('Deve cadastrar um novo usuário e logo em seguida logar no mesmo', () => {
-        cy.visit('register.html')
-        cy.CadastroeLogin()
-        
-    });
-});
+        const nome = faker.person.fullName()
+        const email = `vitor${Date.now()}@teste.com`
+        const telefone = '11977578832'
+        const senha = '56253012'
+
+        cy.cadastrarUsuario(nome, email, telefone, senha)
+
+        // Resultado esperado após o cadastro
+        cy.url().should('include', 'dashboard')
+
+        cy.get('.user-actions > .btn-outline-danger > .fas').click()
+
+        cy.login(email, senha)
+
+        // Resultado esperado após o login
+        cy.url().should('include', 'dashboard')
+    })
+
+})
